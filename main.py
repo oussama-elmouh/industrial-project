@@ -6,16 +6,16 @@ import math
 
 app = FastAPI()
 
-# ✅ Fonction corrigée de calcul de la puissance active
+#  Fonction corrigée de calcul de la puissance active
 def calculate_active_power(current, voltage, power_factor=1):
     return round(math.sqrt(3) * current * voltage * power_factor, 2)
 
-# ✅ Fonction corrigée de calcul de la puissance réactive
+#  Fonction corrigée de calcul de la puissance réactive
 def calculate_reactive_power(current, voltage, power_factor=1):
     sin_phi = math.sqrt(1 - power_factor**2)
     return round(math.sqrt(3) * current * voltage * sin_phi, 2)
 
-# ✅ Fonction améliorée pour calculer la compensation pour atteindre un PF cible (ex: 0.95)
+#  Fonction améliorée pour calculer la compensation pour atteindre un PF cible (ex: 0.95)
 def calculate_compensation(active_power, current_pf, target_pf=0.95):
     tan_phi_current = math.tan(math.acos(current_pf))
     tan_phi_target = math.tan(math.acos(target_pf))
