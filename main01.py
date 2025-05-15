@@ -2,7 +2,9 @@ from fastapi import FastAPI, WebSocket
 import random
 import asyncio
 from datetime import datetime
+
 app = FastAPI()
+
 @app.websocket("/ws/data")
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
@@ -17,9 +19,11 @@ async def websocket_endpoint(websocket: WebSocket):
             onduleur = {
                 "title": f"SUN2000_{i}",
                 "timestamp": datetime.now().isoformat(),
-                "currents": currents,      
+                "currents": currents,
                 "voltages": voltages
             }
             data.append(onduleur)
-            await websocket.send_json({"onduleurs": data})
+        
+        # Envoie uniquement la liste, sans clé "onduleurs"
+        await websocket.send_json(data)
         await asyncio.sleep(1)
