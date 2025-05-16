@@ -1,22 +1,17 @@
-import {ChartPie} from 'lucide-react';
-import {Link} from "react-router";
+import { ChartPie } from 'lucide-react';
+import { Link } from 'react-router';
 
 export interface InvertorCardProps {
   currents: number[];
   voltages: number[];
 }
 
-const InvertorCard = ({
-  currents,
-  voltages,
-}: InvertorCardProps) => {
+const InvertorCard = ({ currents, voltages }: InvertorCardProps) => {
   return (
     <div className="font-poppins rounded bg-white px-8 py-4 shadow">
       <div className="flex items-center justify-between">
         <h3 className="text-2xl font-bold text-gray-700">Titre</h3>
-        <span className="text-xl">
-        {Math.random() > 0.5 ? '🟢' : '🔴'}
-        </span>
+        <span className="text-xl">{Math.random() > 0.5 ? '🟢' : '🔴'}</span>
       </div>
       <div className="mt-6 grid grid-cols-3">
         <div className="space-y-2">
@@ -83,7 +78,10 @@ const InvertorCard = ({
         </div>
       </div>
       <div className="flex justify-end">
-        <Link to="/inventor-item" className="flex cursor-pointer items-center gap-x-1 text-gray-500 hover:text-gray-900">
+        <Link
+          to="/inventor-item"
+          className="flex cursor-pointer items-center gap-x-1 text-gray-500 hover:text-gray-900"
+        >
           <ChartPie className="size-5" />
           <span>Voir détails</span>
         </Link>

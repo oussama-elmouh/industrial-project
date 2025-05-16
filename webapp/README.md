@@ -26,6 +26,7 @@ Chart 1 (Puissance active, Puissance réactive, Puissance apparente)
 Chart 2 (Énergie active, Énergie réactive)
 
 # Onduleurs
+
 sum(Puissance active, Puissance réactive, Puissance apparente)
 sum(Énergie active, Énergie réactive)
 

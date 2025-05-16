@@ -1,14 +1,13 @@
-import {Bell} from "lucide-react";
+import { Bell } from 'lucide-react';
 
 export default function Navbar() {
-    return (
-        <div className="mx-auto bg-white shadow">
-            <div className="max-w-7xl mx-auto">
-                <div className="h-16 bg-white flex justify-end items-center">
-                    <Bell />
-                </div>
-            </div>
+  return (
+    <div className="mx-auto bg-white shadow">
+      <div className="mx-auto max-w-7xl">
+        <div className="flex h-16 items-center justify-end bg-white">
+          <Bell />
         </div>
-    )
+      </div>
+    </div>
+  );
 }
-
