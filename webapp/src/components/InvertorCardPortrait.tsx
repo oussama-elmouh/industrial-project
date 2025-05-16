@@ -1,5 +1,3 @@
-import { BatteryFull } from 'lucide-react';
-
 export interface InvertorCardProps {
   currents: number[];
   voltages: number[];
@@ -13,7 +11,9 @@ const InvertorCard = ({
     <div className="font-poppins rounded bg-white px-8 py-4 shadow">
       <div className="flex items-center justify-between">
         <h3 className="text-2xl font-bold text-gray-700">Titre</h3>
-        <BatteryFull className="size-12 text-green-600" />
+          <span className="text-xl">
+            {Math.random() > 0.5 ? '🟢' : '🔴'}
+        </span>
       </div>
 
       <div className="mt-6 grid grid-cols-3">
