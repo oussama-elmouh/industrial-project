@@ -1,5 +1,5 @@
 import useWebSocket from 'react-use-websocket';
-import InvertorCard from '../components/InvertorCard.tsx';
+import InvertorCard from '../components/InvertorCardLandscape.tsx';
 
 interface Inventor {
   title: string;

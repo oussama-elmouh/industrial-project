@@ -4,7 +4,6 @@ import './index.css';
 import App from './App.tsx';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import InventorList from './routes/InventorList.tsx';
-import Dashboard from './routes/Dashboard.tsx';
 import InventorItem from '@/routes/InventorItem.tsx';
 
 createRoot(document.getElementById('root')!).render(
@@ -12,8 +11,7 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <Routes>
         <Route index element={<App />} />
-        <Route path="solar-energy" element={<InventorList />} />
-        <Route path="inventor-overview" element={<Dashboard />} />
+        <Route path="inventor-list" element={<InventorList />} />
         <Route path="inventor-item" element={<InventorItem />} />
       </Routes>
     </BrowserRouter>
