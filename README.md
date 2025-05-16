@@ -27,4 +27,3 @@ est ce que la formulaire de calculer chaque donner est juste
 Solaire :900 active et 200 reactive 
 auto => 100 active et 100 reactive
 
-            
