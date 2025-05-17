@@ -5,6 +5,7 @@ import App from './App.tsx';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import InventorList from './routes/InventorList.tsx';
 import InventorItem from '@/routes/InventorItem.tsx';
+import AlarmList from '@/routes/AlarmList.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -13,6 +14,7 @@ createRoot(document.getElementById('root')!).render(
         <Route index element={<App />} />
         <Route path="inventor-list" element={<InventorList />} />
         <Route path="inventor-item" element={<InventorItem />} />
+        <Route path="alarms" element={<AlarmList />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

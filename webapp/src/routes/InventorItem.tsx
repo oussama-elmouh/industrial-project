@@ -3,7 +3,6 @@ import { random } from '@/lib/utils.ts';
 import CurrentChart from '@/components/charts/CurrentChart.tsx';
 import VoltageChart from '@/components/charts/VoltageChart.tsx';
 import ActivePower from '@/components/charts/ActivePower.tsx';
-import ReactivePower from '@/components/charts/ReactivePower.tsx';
 
 const data = Array.from({ length: 24 }).map(() => ({
   currents: [random(50, 60), random(50, 60), random(50, 60)],
@@ -27,7 +26,6 @@ const InventorItem = () => {
               <CurrentChart currents={currents} />
               <VoltageChart voltages={voltages} />
               <ActivePower />
-              <ReactivePower />
             </div>
           </div>
         </div>

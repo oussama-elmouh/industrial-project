@@ -10,7 +10,7 @@ function App() {
         <div className="grid grid-cols-3 gap-16">
           <Link to="inventor-list">
             <FeatureCard
-              title="Énérgie solaire"
+              title="Surveillance des onduleurs"
               image="/svgs/solar-energy.svg"
             />
           </Link>
