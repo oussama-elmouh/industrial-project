@@ -1,60 +1,47 @@
-import { BatteryFull, BatteryLow, BatteryWarning } from 'lucide-react';
-import { PlugZap } from 'lucide';
+import { cn } from '@/lib/utils';
+import { BatteryFull, BatteryLow, BatteryWarning, PlugZap } from 'lucide-react';
 import Navbar from '@/components/Navbar.tsx';
 
-const AlarmList = () => {
+export default function Example() {
   return (
-    <div className="h-screen bg-gray-50">
+    <div>
       <Navbar />
 
-      <div className="mt-16">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-2 gap-8">
-            {alarms.map((alarm) => (
-              <div
-                key={alarm.condition}
-                className="rounded-lg border bg-white px-6 py-4 shadow-sm"
-              >
-                <div className="flex h-full flex-col justify-between gap-y-4">
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-x-3">
-                        <img
-                          className="size-12"
-                          src="/icons/charging.png"
-                          alt="charing"
-                        />
+      <div className="mx-auto mt-16 max-w-7xl">
+        <div className="grid gap-4 sm:grid-cols-2">
+          {alarms.map((alarm) => (
+            <div
+              key={alarm.condition}
+              className="relative rounded-lg bg-white p-6 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-inset"
+            >
+              <div className="flex items-center justify-between">
+                <span
+                  className={cn(
+                    alarm.iconBackground,
+                    alarm.iconForeground,
+                    'inline-flex rounded-lg p-3 ring-4 ring-white',
+                  )}
+                >
+                  <alarm.icon className="h-6 w-6" aria-hidden="true" />
+                </span>
 
-                        <div>
-                          <h3 className="font-bold text-gray-700">
-                            {alarm.condition}
-                          </h3>
-                          <div className="text-gray-500">Eaton</div>
-                        </div>
-                      </div>
-
-                      <div className="text-sm text-gray-500">Now</div>
-                    </div>
-
-                    <p className="text-sm">{alarm.action}</p>
-                  </div>
-
-                  <div>
-                    <button className="w-1/2 cursor-pointer rounded-lg bg-gray-100 px-4 py-2 text-gray-600 hover:bg-gray-200">
-                      Dismiss
-                    </button>
-                  </div>
-                </div>
+                <span className="text-sm text-gray-500">Now</span>
               </div>
-            ))}
-          </div>
+              <div className="mt-8">
+                <h3 className="text-base leading-6 font-semibold text-gray-900">
+                  <a href="#" className="focus:outline-none">
+                    {alarm.condition}
+                  </a>
+                </h3>
+                <p className="mt-2 text-sm text-gray-500">{alarm.action}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   );
-};
-
-export default AlarmList;
+}
 
 const alarms = [
   {
@@ -62,36 +49,48 @@ const alarms = [
     action:
       'The UPS is powering the equipment with battery power. Prepare your equipment for shutdown.',
     icon: BatteryFull,
+    iconForeground: 'text-teal-700',
+    iconBackground: 'bg-teal-50',
   },
   {
     condition: 'Battery low',
     action:
       "This warning is approximate, and the actual time to shutdown may vary significantly. Depending on the UPS load and number of Extended Battery Modules (EBMs), the 'Battery Low' warning may occur before the batteries reach 20% capacity.",
     icon: BatteryLow,
+    iconForeground: 'text-purple-700',
+    iconBackground: 'bg-purple-50',
   },
   {
     condition: 'No battery',
     action:
       'Verify that all batteries are properly connected. If the condition persists, contact your service representative.',
     icon: PlugZap,
+    iconForeground: 'text-sky-700',
+    iconBackground: 'bg-sky-50',
   },
   {
     condition: 'Battery fault',
     action:
       'Verify that all batteries are properly connected. Start a new battery test: if the condition persists, contact your service representative.',
     icon: BatteryWarning,
+    iconForeground: 'text-yellow-700',
+    iconBackground: 'bg-yellow-50',
   },
   {
     condition: 'The UPS does not provide the expected backup time',
     action:
       'Apply utility power for 48 hours to charge the batteries. If the condition persists, contact your service representative.',
     icon: BatteryWarning,
+    iconForeground: 'text-rose-700',
+    iconBackground: 'bg-rose-50',
   },
   {
     condition: 'Bypass mode',
     action:
       'Equipment is powered but not protected by the UPS. Check for one of the following alarms: overtemperature, overload or UPS failure.',
     icon: BatteryWarning,
+    iconForeground: 'text-indigo-700',
+    iconBackground: 'bg-indigo-50',
   },
   {
     condition: 'Power overload',
