@@ -15,28 +15,18 @@ import {
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
 
 const chartConfig = {
-  phase1: {
-    label: 'Phase 1',
+  phase: {
+    label: 'Tension',
     color: '#2563eb',
-  },
-  phase2: {
-    label: 'Phase 2',
-    color: '#60a5fa',
-  },
-  phase3: {
-    label: 'Phase 3',
-    color: '#ff0000',
   },
 } satisfies ChartConfig;
 
-const CurrentChart = ({ currents }: { currents: number[][] }) => {
+const CurrentChart = ({ currents }: { currents: number[] }) => {
   const currentData = currents.map((i, index) => ({
     hour: new Intl.NumberFormat('en-US', {
       minimumIntegerDigits: 2,
     }).format(index + 1),
-    phase1: i[0],
-    phase2: i[1],
-    phase3: i[2],
+    phase: i,
   }));
 
   return (

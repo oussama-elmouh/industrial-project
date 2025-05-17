@@ -9,18 +9,18 @@ function App() {
           <Link to="/inventor-list">
             <FeatureCard
               title="Surveillance des onduleurs"
-              image="/svgs/solar-energy.svg"
+              image="/images/inventor.png"
             />
           </Link>
 
           <FeatureCard
-            title="Station météo"
+            title="Service d'environnement"
             image="/svgs/weather-station.svg"
           />
 
-          <FeatureCard title="Rapports" image="/svgs/report.svg" />
+          <FeatureCard title="Diagnosics" image="/svgs/report.svg" />
 
-          <FeatureCard title="Alarmes" image="/svgs/alert.svg" />
+          <FeatureCard title="Alarms" image="/svgs/alert.svg" />
         </div>
       </div>
     </div>

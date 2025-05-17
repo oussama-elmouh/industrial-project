@@ -1,21 +1,7 @@
-import useWebSocket from 'react-use-websocket';
 import InvertorCard from '../components/InvertorCardLandscape.tsx';
-
-interface Inventor {
-  title: string;
-  currents: [number, number, number];
-  voltages: [number, number, number];
-}
+import { random } from '@/lib/utils.ts';
 
 const InventorList = () => {
-  const socketUrl = 'ws://localhost:8080';
-
-  const { lastJsonMessage } = useWebSocket<Inventor>(socketUrl, {
-    onOpen: (e) => console.log(e),
-  });
-
-  console.log(lastJsonMessage);
-
   return (
     <div className="h-screen overflow-auto bg-gray-50">
       <div className="mx-auto max-w-7xl p-8">
@@ -35,8 +21,8 @@ const inverterData = [
   {
     title: 'SUN2000',
     phases: ['L1', 'L2', 'L3'],
-    currents: [21.9, 22.1, 22.5],
-    voltages: [230, 229, 231],
+    current: random(50, 60),
+    voltage: random(700, 800),
     activePower: 6.2,
     reactivePower: 1.1,
     apparentPower: 6.3,
@@ -46,8 +32,8 @@ const inverterData = [
   {
     title: 'EATON 2',
     phases: ['L1', 'L2', 'L3'],
-    currents: [19.5, 20.0, 20.3],
-    voltages: [228, 227, 229],
+    current: random(50, 60),
+    voltage: random(700, 800),
     activePower: 5.7,
     reactivePower: 0.9,
     apparentPower: 5.9,
@@ -57,8 +43,8 @@ const inverterData = [
   {
     title: 'EATON 3',
     phases: ['L1', 'L2', 'L3'],
-    currents: [23.1, 23.4, 23.7],
-    voltages: [231, 230, 232],
+    current: random(50, 60),
+    voltage: random(700, 800),
     activePower: 6.8,
     reactivePower: 1.3,
     apparentPower: 7.0,
@@ -68,8 +54,8 @@ const inverterData = [
   {
     title: 'EATON 4',
     phases: ['L1', 'L2', 'L3'],
-    currents: [18.0, 18.5, 18.9],
-    voltages: [226, 225, 227],
+    current: random(50, 60),
+    voltage: random(700, 800),
     activePower: 5.1,
     reactivePower: 0.8,
     apparentPower: 5.3,

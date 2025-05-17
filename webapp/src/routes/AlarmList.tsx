@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 import { BatteryFull, BatteryLow, BatteryWarning, PlugZap } from 'lucide-react';
 import Navbar from '@/components/Navbar.tsx';
 
-export default function Example() {
+export default function AlarmList() {
   return (
     <div>
       <Navbar />
@@ -43,7 +43,7 @@ export default function Example() {
   );
 }
 
-const alarms = [
+export const alarms = [
   {
     condition: 'Battery mode',
     action:
@@ -51,6 +51,7 @@ const alarms = [
     icon: BatteryFull,
     iconForeground: 'text-teal-700',
     iconBackground: 'bg-teal-50',
+    date: '2025-05-17T10:00:00Z', // ISO 8601 timestamp
   },
   {
     condition: 'Battery low',
@@ -59,6 +60,7 @@ const alarms = [
     icon: BatteryLow,
     iconForeground: 'text-purple-700',
     iconBackground: 'bg-purple-50',
+    date: '2025-05-17T10:05:00Z',
   },
   {
     condition: 'No battery',
@@ -67,6 +69,7 @@ const alarms = [
     icon: PlugZap,
     iconForeground: 'text-sky-700',
     iconBackground: 'bg-sky-50',
+    date: '2025-05-17T10:10:00Z',
   },
   {
     condition: 'Battery fault',
@@ -75,6 +78,7 @@ const alarms = [
     icon: BatteryWarning,
     iconForeground: 'text-yellow-700',
     iconBackground: 'bg-yellow-50',
+    date: '2025-05-17T10:15:00Z',
   },
   {
     condition: 'The UPS does not provide the expected backup time',
@@ -83,6 +87,7 @@ const alarms = [
     icon: BatteryWarning,
     iconForeground: 'text-rose-700',
     iconBackground: 'bg-rose-50',
+    date: '2025-05-17T10:20:00Z',
   },
   {
     condition: 'Bypass mode',
@@ -91,11 +96,15 @@ const alarms = [
     icon: BatteryWarning,
     iconForeground: 'text-indigo-700',
     iconBackground: 'bg-indigo-50',
+    date: '2025-05-17T10:25:00Z',
   },
   {
     condition: 'Power overload',
     action:
       'Remove some of the equipment from the UPS. The UPS continues to operate, but may switch to Bypass mode or shut down if the load increases. The alarm resets when the condition becomes inactive.',
     icon: BatteryWarning,
+    iconForeground: 'text-indigo-700',
+    iconBackground: 'bg-indigo-50',
+    date: '2025-05-17T10:30:00Z',
   },
 ];

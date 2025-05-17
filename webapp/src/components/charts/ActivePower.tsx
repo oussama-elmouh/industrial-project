@@ -51,7 +51,7 @@ const ActivePower = () => {
             <Line
               dataKey="value"
               type="natural"
-              stroke={`var(--color-black)`}
+              stroke={`#2563eb`}
               strokeWidth={2}
               dot={false}
             />
