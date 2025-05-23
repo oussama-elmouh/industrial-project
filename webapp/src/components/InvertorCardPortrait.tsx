@@ -1,9 +1,6 @@
-export interface InvertorCardProps {
-  current: number;
-  voltage: number;
-}
+import { InvertorCardProps } from '@/shared/types.ts';
 
-const InvertorCard = ({ current, voltage }: InvertorCardProps) => {
+const InvertorCard = ({ phases, currents, voltages }: InvertorCardProps) => {
   return (
     <div className="font-poppins rounded bg-white px-8 py-4 shadow">
       <div className="flex items-center justify-between">
@@ -14,21 +11,29 @@ const InvertorCard = ({ current, voltage }: InvertorCardProps) => {
       <div className="mt-6 grid grid-cols-3">
         <div className="space-y-2">
           <div className="text-gray-600">Phase</div>
-          <div className="text-xl text-gray-900">L</div>
+          {phases.map((phase, i) => (
+            <div key={i} className="text-xl text-gray-900">
+              L{phase}
+            </div>
+          ))}
         </div>
 
         <div className="space-y-2 justify-self-center">
           <div className="text-gray-600">Courant</div>
-          <div className="text-xl font-semibold text-gray-900">
-            {current} <span className="text-lg text-gray-900">A</span>
-          </div>
+          {currents.map((current, i) => (
+            <div key={i} className="text-xl font-semibold text-gray-900">
+              {current} <span className="text-lg text-gray-900">A</span>
+            </div>
+          ))}
         </div>
 
         <div className="space-y-2 justify-self-end text-right">
           <div className="text-gray-600">Tension</div>
-          <div className="text-xl font-semibold text-gray-900">
-            {voltage} <span className="text-lg text-gray-900">V</span>
-          </div>
+          {voltages.map((voltage, i) => (
+            <div key={i} className="text-xl font-semibold text-gray-900">
+              {voltage} <span className="text-lg text-gray-900">V</span>
+            </div>
+          ))}
         </div>
       </div>
 

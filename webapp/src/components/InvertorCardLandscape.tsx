@@ -1,11 +1,6 @@
 import { ChartPie } from 'lucide-react';
 import { Link } from 'react-router';
-
-export interface InvertorCardProps {
-  phases: string[];
-  currents: number[];
-  voltages: number[];
-}
+import { InvertorCardProps } from '@/shared/types.ts';
 
 const InvertorCard = ({ phases, currents, voltages }: InvertorCardProps) => {
   return (

@@ -14,19 +14,29 @@ import {
 } from '@/components/ui/card.tsx';
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
 
-const chartConfig = {
-  phase: {
-    label: 'Tension',
+const config = {
+  l1: {
+    label: 'L1',
+    color: '#2563eb',
+  },
+  l2: {
+    label: 'L2',
+    color: '#2563eb',
+  },
+  l3: {
+    label: 'L3',
     color: '#2563eb',
   },
 } satisfies ChartConfig;
 
-const CurrentChart = ({ currents }: { currents: number[] }) => {
-  const currentData = currents.map((i, index) => ({
+const CurrentChart = ({ currents }: { currents: number[][] }) => {
+  const data = currents.map((current, index) => ({
     hour: new Intl.NumberFormat('en-US', {
       minimumIntegerDigits: 2,
     }).format(index + 1),
-    phase: i,
+    l1: current[0],
+    l2: current[1],
+    l3: current[2],
   }));
 
   return (
@@ -37,8 +47,8 @@ const CurrentChart = ({ currents }: { currents: number[] }) => {
       </CardHeader>
 
       <CardContent>
-        <ChartContainer config={chartConfig}>
-          <LineChart accessibilityLayer data={currentData}>
+        <ChartContainer config={config}>
+          <LineChart accessibilityLayer data={data}>
             <CartesianGrid vertical={false} />
             <XAxis
               unit="h"
@@ -49,7 +59,7 @@ const CurrentChart = ({ currents }: { currents: number[] }) => {
             />
             <YAxis domain={['auto', 'auto']} />
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
-            {Object.keys(chartConfig).map((i) => (
+            {Object.keys(config).map((i) => (
               <Line
                 dataKey={i}
                 type="natural"

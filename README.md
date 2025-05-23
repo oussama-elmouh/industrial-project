@@ -16,7 +16,7 @@ Modules NECESSAIRE DANS L'APPLICATION
 \*contient3 phase (L1,L2,L3)
 -currents
 -voltages
--activePower
+-realPower
 -reactivePower  
 -apparentPower  
 -activeEnergy  

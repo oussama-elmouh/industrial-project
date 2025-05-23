@@ -1,18 +1,22 @@
 import InventorCard from '@/components/InvertorCardPortrait.tsx';
-import { cn, random } from '@/lib/utils.ts';
+import { calculateRealPower, cn, random } from '@/lib/utils.ts';
 import CurrentChart from '@/components/charts/CurrentChart.tsx';
 import VoltageChart from '@/components/charts/VoltageChart.tsx';
-import ActivePower from '@/components/charts/ActivePower.tsx';
+import RealPower from '@/components/charts/RealPower.tsx';
 import { alarms } from '@/routes/AlarmList.tsx';
 import { ScrollArea } from '@/components/ui/scroll-area.tsx';
 
 const data = Array.from({ length: 24 }).map(() => ({
-  current: random(50, 60),
-  voltage: random(700, 800),
+  phases: ['L1', 'L2', 'L3'],
+  currents: random(50, 60),
+  voltages: random(700, 800),
 }));
 
-const currents = data.map((i) => i.current);
-const voltages = data.map((i) => i.voltage);
+const currents = data.map((i) => i.currents);
+const voltages = data.map((i) => i.voltages);
+const realPowerValues = data.map((i) =>
+  calculateRealPower(i.voltages[0], i.currents[0]),
+);
 
 const InventorItem = () => {
   return (
@@ -30,7 +34,7 @@ const InventorItem = () => {
             <div className="grid grid-cols-2 gap-4">
               <CurrentChart currents={currents} />
               <VoltageChart voltages={voltages} />
-              <ActivePower />
+              <RealPower realPowerValues={realPowerValues} />
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import {
+  ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
@@ -11,16 +12,26 @@ import {
   CardTitle,
 } from '@/components/ui/card.tsx';
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
-import { random } from '@/lib/utils.ts';
 
-const activePower = Array.from({ length: 24 }).map((_, index) => ({
-  hour: new Intl.NumberFormat('en-US', {
-    minimumIntegerDigits: 2,
-  }).format(index + 1),
-  value: random(500, 1000),
-}));
+const config = {
+  realPower: {
+    label: 'Puissance active',
+    color: '#ff0000',
+  },
+} satisfies ChartConfig;
 
-const ActivePower = () => {
+const RealPower = ({
+  realPowerValues: values,
+}: {
+  realPowerValues: number[];
+}) => {
+  const realPower = values.map((realPower, index) => ({
+    hour: new Intl.NumberFormat('en-US', {
+      minimumIntegerDigits: 2,
+    }).format(index + 1),
+    realPower: Math.round(realPower),
+  }));
+
   return (
     <Card>
       <CardHeader>
@@ -29,15 +40,8 @@ const ActivePower = () => {
       </CardHeader>
 
       <CardContent>
-        <ChartContainer
-          config={{
-            activePower: {
-              label: 'Puissance active',
-              color: '#ff0000',
-            },
-          }}
-        >
-          <LineChart accessibilityLayer data={activePower}>
+        <ChartContainer config={config}>
+          <LineChart accessibilityLayer data={realPower}>
             <CartesianGrid vertical={false} />
             <XAxis
               unit="h"
@@ -47,9 +51,12 @@ const ActivePower = () => {
               tickMargin={8}
             />
             <YAxis domain={['auto', 'auto']} />
-            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent className="w-48" />}
+            />
             <Line
-              dataKey="value"
+              dataKey="realPower"
               type="natural"
               stroke={`#2563eb`}
               strokeWidth={2}
@@ -62,4 +69,4 @@ const ActivePower = () => {
   );
 };
 
-export default ActivePower;
+export default RealPower;

@@ -14,19 +14,29 @@ import {
 } from '@/components/ui/card.tsx';
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
 
-const chartConfig = {
-  phase: {
-    label: 'Tension',
+const config = {
+  l1: {
+    label: 'L1',
+    color: '#2563eb',
+  },
+  l2: {
+    label: 'L2',
+    color: '#2563eb',
+  },
+  l3: {
+    label: 'L3',
     color: '#2563eb',
   },
 } satisfies ChartConfig;
 
-const VoltageChart = ({ voltages }: { voltages: number[] }) => {
-  const voltageData = voltages.map((i, index) => ({
+const VoltageChart = ({ voltages }: { voltages: number[][] }) => {
+  const voltageData = voltages.map((voltage, index) => ({
     hour: new Intl.NumberFormat('en-US', {
       minimumIntegerDigits: 2,
     }).format(index + 1),
-    phase: i,
+    l1: voltage[0],
+    l2: voltage[1],
+    l3: voltage[2],
   }));
 
   return (
@@ -37,7 +47,7 @@ const VoltageChart = ({ voltages }: { voltages: number[] }) => {
       </CardHeader>
 
       <CardContent>
-        <ChartContainer config={chartConfig}>
+        <ChartContainer config={config}>
           <LineChart accessibilityLayer data={voltageData}>
             <CartesianGrid vertical={false} />
             <XAxis
@@ -49,7 +59,7 @@ const VoltageChart = ({ voltages }: { voltages: number[] }) => {
             />
             <YAxis domain={['auto', 'auto']} />
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
-            {Object.keys(chartConfig).map((i) => (
+            {Object.keys(config).map((i) => (
               <Line
                 dataKey={i}
                 type="natural"
