@@ -5,6 +5,7 @@ import VoltageChart from '@/components/charts/VoltageChart.tsx';
 import RealPower from '@/components/charts/RealPower.tsx';
 import { alarms } from '@/routes/AlarmList.tsx';
 import { ScrollArea } from '@/components/ui/scroll-area.tsx';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 const data = Array.from({ length: 24 }).map(() => ({
   phases: ['L1', 'L2', 'L3'],
@@ -20,26 +21,48 @@ const realPowerValues = data.map((i) =>
 
 const InventorItem = () => {
   return (
-    <div className="h-screen bg-gray-50">
-      <div className="p-16">
-        <div className="grid grid-cols-12 gap-8">
-          <div className="col-span-3">
-            <div className="space-y-4">
-              <InventorCard {...data[data.length - 1]} />
-              <StackedListAlarms />
+    <>
+      <div className="h-screen bg-gray-50">
+        <div className="p-16">
+          <div className="grid grid-cols-12 gap-8">
+            <div className="col-span-3">
+              <div className="space-y-4">
+                <InventorCard {...data[data.length - 1]} />
+                <StackedListAlarms />
+              </div>
             </div>
-          </div>
 
-          <div className="col-span-9">
-            <div className="grid grid-cols-2 gap-4">
-              <CurrentChart currents={currents} />
-              <VoltageChart voltages={voltages} />
-              <RealPower realPowerValues={realPowerValues} />
+            <div className="col-span-6">
+              <Tabs defaultValue="current">
+                <TabsList className="w-full">
+                  <TabsTrigger className="cursor-pointer" value="current">
+                    Courant
+                  </TabsTrigger>
+                  <TabsTrigger className="cursor-pointer" value="voltage">
+                    Tension
+                  </TabsTrigger>
+                  <TabsTrigger className="cursor-pointer" value="realPower">
+                    Puissance active
+                  </TabsTrigger>
+                </TabsList>
+
+                <TabsContent value="current">
+                  <CurrentChart currents={currents} />
+                </TabsContent>
+
+                <TabsContent value="voltage">
+                  <VoltageChart voltages={voltages} />
+                </TabsContent>
+
+                <TabsContent value="realPower">
+                  <RealPower realPowerValues={realPowerValues} />
+                </TabsContent>
+              </Tabs>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
