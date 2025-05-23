@@ -40,7 +40,7 @@ const InvertorCard = ({ phases, currents, voltages }: InvertorCardProps) => {
         </div>
       </div>
 
-      <div className="mt-4 grid grid-cols-3 gap-y-4">
+      <div className="mt-4 grid grid-cols-3 gap-x-4 gap-y-4">
         <div>
           <div className="text-gray-600">Puissance active</div>
           <div className="text-xl font-semibold text-gray-900">

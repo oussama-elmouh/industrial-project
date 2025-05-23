@@ -6,6 +6,7 @@ import RealPower from '@/components/charts/RealPower.tsx';
 import { alarms } from '@/routes/AlarmList.tsx';
 import { ScrollArea } from '@/components/ui/scroll-area.tsx';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import Navbar from '@/components/Navbar.tsx';
 
 const data = Array.from({ length: 24 }).map(() => ({
   phases: ['L1', 'L2', 'L3'],
@@ -22,46 +23,45 @@ const realPowerValues = data.map((i) =>
 const InventorItem = () => {
   return (
     <>
-      <div className="h-screen bg-gray-50">
-        <div className="p-16">
-          <div className="grid grid-cols-12 gap-8">
-            <div className="col-span-3">
-              <div className="space-y-4">
-                <InventorCard {...data[data.length - 1]} />
-              </div>
+      <Navbar />
+      <div className="mt-8 px-32">
+        <div className="grid grid-cols-12 gap-8">
+          <div className="col-span-3">
+            <div className="space-y-4">
+              <InventorCard {...data[data.length - 1]} />
             </div>
+          </div>
 
-            <div className="col-span-6">
-              <Tabs defaultValue="current">
-                <TabsList className="w-full">
-                  <TabsTrigger className="cursor-pointer" value="current">
-                    Courant
-                  </TabsTrigger>
-                  <TabsTrigger className="cursor-pointer" value="voltage">
-                    Tension
-                  </TabsTrigger>
-                  <TabsTrigger className="cursor-pointer" value="realPower">
-                    Puissance active
-                  </TabsTrigger>
-                </TabsList>
+          <div className="col-span-5">
+            <Tabs defaultValue="current">
+              <TabsList className="w-full">
+                <TabsTrigger className="cursor-pointer" value="current">
+                  Courant
+                </TabsTrigger>
+                <TabsTrigger className="cursor-pointer" value="voltage">
+                  Tension
+                </TabsTrigger>
+                <TabsTrigger className="cursor-pointer" value="realPower">
+                  Puissance active
+                </TabsTrigger>
+              </TabsList>
 
-                <TabsContent value="current">
-                  <CurrentChart currents={currents} />
-                </TabsContent>
+              <TabsContent value="current">
+                <CurrentChart currents={currents} />
+              </TabsContent>
 
-                <TabsContent value="voltage">
-                  <VoltageChart voltages={voltages} />
-                </TabsContent>
+              <TabsContent value="voltage">
+                <VoltageChart voltages={voltages} />
+              </TabsContent>
 
-                <TabsContent value="realPower">
-                  <RealPower realPowerValues={realPowerValues} />
-                </TabsContent>
-              </Tabs>
-            </div>
+              <TabsContent value="realPower">
+                <RealPower realPowerValues={realPowerValues} />
+              </TabsContent>
+            </Tabs>
+          </div>
 
-            <div className="col-span-3">
-              <StackedListAlarms />
-            </div>
+          <div className="col-span-4">
+            <StackedListAlarms />
           </div>
         </div>
       </div>
@@ -71,11 +71,11 @@ const InventorItem = () => {
 
 export default InventorItem;
 
-const StackedListAlarms = () => {
+export const StackedListAlarms = () => {
   return (
-    <div className="rounded bg-white py-4 shadow">
-      <h3 className="mb-6 px-8 text-2xl font-bold text-gray-700">Alarmes</h3>
-      <ScrollArea className="h-[576px] px-8">
+    <div className="h-full rounded bg-white py-6 shadow">
+      <ScrollArea className="h-full px-8">
+        <h3 className="mb-6 px-8 text-2xl font-bold text-gray-700">Alarmes</h3>
         <ul role="list" className="divide-y divide-gray-100">
           {[...alarms, ...alarms].map((alarm) => (
             <li

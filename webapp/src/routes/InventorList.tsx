@@ -1,22 +1,41 @@
 import InvertorCard from '../components/InvertorCardLandscape.tsx';
 import { random } from '@/lib/utils.ts';
+import { StackedListAlarms } from '@/routes/InventorItem.tsx';
+import Navbar from '@/components/Navbar.tsx';
+import { ScrollArea } from '@/components/ui/scroll-area.tsx';
 
 const InventorList = () => {
   return (
-    <div className="h-screen overflow-auto bg-gray-50">
-      <div className="mx-auto max-w-7xl p-8">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-          {inverterData.map((data, index) => (
-            <InvertorCard
-              key={index}
-              phases={data.phases}
-              currents={data.currents}
-              voltages={data.voltages}
-            />
-          ))}
+    <>
+      <Navbar />
+
+      <div className="mx-auto mt-8 max-w-7xl">
+        <div className="grid grid-cols-3 gap-8">
+          <div className="col-span-1">
+            <div className="h-[768px]">
+              <StackedListAlarms />
+            </div>
+          </div>
+
+          <div className="col-span-2">
+            <div className="h-[768px]">
+              <ScrollArea className="h-full">
+                <div className="grid grid-cols-1 gap-8">
+                  {inverterData.map((data, index) => (
+                    <InvertorCard
+                      key={index}
+                      phases={data.phases}
+                      currents={data.currents}
+                      voltages={data.voltages}
+                    />
+                  ))}
+                </div>
+              </ScrollArea>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
