@@ -28,7 +28,6 @@ const InventorItem = () => {
             <div className="col-span-3">
               <div className="space-y-4">
                 <InventorCard {...data[data.length - 1]} />
-                <StackedListAlarms />
               </div>
             </div>
 
@@ -59,6 +58,10 @@ const InventorItem = () => {
                 </TabsContent>
               </Tabs>
             </div>
+
+            <div className="col-span-3">
+              <StackedListAlarms />
+            </div>
           </div>
         </div>
       </div>
@@ -70,34 +73,37 @@ export default InventorItem;
 
 const StackedListAlarms = () => {
   return (
-    <ScrollArea className="h-96 rounded bg-white px-8 py-4 shadow">
-      <ul role="list" className="divide-y divide-gray-100">
-        {alarms.map((alarm) => (
-          <li
-            key={alarm.condition}
-            className="flex justify-between gap-x-4 py-5"
-          >
-            <div>
-              <h3 className="font-medium">{alarm.condition}</h3>
-              <time dateTime={alarm.date} className="text-sm text-gray-500">
-                {formatDate(new Date(alarm.date))}
-              </time>
-            </div>
-            <div>
-              <span
-                className={cn(
-                  alarm.iconBackground,
-                  alarm.iconForeground,
-                  'inline-flex rounded-lg p-3 ring-4 ring-white',
-                )}
-              >
-                <alarm.icon className="h-6 w-6" aria-hidden="true" />
-              </span>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </ScrollArea>
+    <div className="rounded bg-white py-4 shadow">
+      <h3 className="mb-6 px-8 text-2xl font-bold text-gray-700">Alarmes</h3>
+      <ScrollArea className="h-[576px] px-8">
+        <ul role="list" className="divide-y divide-gray-100">
+          {[...alarms, ...alarms].map((alarm) => (
+            <li
+              key={alarm.condition}
+              className="flex justify-between gap-x-4 py-5 first:pt-0"
+            >
+              <div>
+                <h3 className="font-medium">{alarm.condition}</h3>
+                <time dateTime={alarm.date} className="text-sm text-gray-500">
+                  {formatDate(new Date(alarm.date))}
+                </time>
+              </div>
+              <div>
+                <span
+                  className={cn(
+                    alarm.iconBackground,
+                    alarm.iconForeground,
+                    'inline-flex rounded-lg p-3 ring-4 ring-white',
+                  )}
+                >
+                  <alarm.icon className="h-6 w-6" aria-hidden="true" />
+                </span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </ScrollArea>
+    </div>
   );
 };
 
