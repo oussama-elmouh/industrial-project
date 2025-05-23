@@ -7,7 +7,12 @@ const InventorList = () => {
       <div className="mx-auto max-w-7xl p-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {inverterData.map((data, index) => (
-            <InvertorCard key={index} {...data} />
+            <InvertorCard
+              key={index}
+              phases={data.phases}
+              currents={data.currents}
+              voltages={data.voltages}
+            />
           ))}
         </div>
       </div>
@@ -21,8 +26,8 @@ const inverterData = [
   {
     title: 'SUN2000',
     phases: ['L1', 'L2', 'L3'],
-    current: random(50, 60),
-    voltage: random(700, 800),
+    currents: random(50, 60),
+    voltages: random(700, 800),
     activePower: 6.2,
     reactivePower: 1.1,
     apparentPower: 6.3,
@@ -32,8 +37,8 @@ const inverterData = [
   {
     title: 'EATON 2',
     phases: ['L1', 'L2', 'L3'],
-    current: random(50, 60),
-    voltage: random(700, 800),
+    currents: random(50, 60),
+    voltages: random(700, 800),
     activePower: 5.7,
     reactivePower: 0.9,
     apparentPower: 5.9,
@@ -43,8 +48,8 @@ const inverterData = [
   {
     title: 'EATON 3',
     phases: ['L1', 'L2', 'L3'],
-    current: random(50, 60),
-    voltage: random(700, 800),
+    currents: random(50, 60),
+    voltages: random(700, 800),
     activePower: 6.8,
     reactivePower: 1.3,
     apparentPower: 7.0,
@@ -54,8 +59,8 @@ const inverterData = [
   {
     title: 'EATON 4',
     phases: ['L1', 'L2', 'L3'],
-    current: random(50, 60),
-    voltage: random(700, 800),
+    currents: random(50, 60),
+    voltages: random(700, 800),
     activePower: 5.1,
     reactivePower: 0.8,
     apparentPower: 5.3,

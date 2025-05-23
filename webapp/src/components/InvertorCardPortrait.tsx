@@ -7,7 +7,7 @@ const InvertorCard = ({ current, voltage }: InvertorCardProps) => {
   return (
     <div className="font-poppins rounded bg-white px-8 py-4 shadow">
       <div className="flex items-center justify-between">
-        <h3 className="text-2xl font-bold text-gray-700">Titre</h3>
+        <h3 className="text-2xl font-bold text-gray-700">Sentryum</h3>
         <span className="text-xl">{Math.random() > 0.5 ? '🟢' : '🔴'}</span>
       </div>
 

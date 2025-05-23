@@ -6,5 +6,6 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const random = (min: number, max: number) => {
-  return Math.floor(Math.random() * (max - min) + min);
+  const value = Math.floor(Math.random() * (max - min) + min);
+  return [value, value, value];
 };

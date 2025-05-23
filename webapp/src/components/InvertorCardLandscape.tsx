@@ -2,37 +2,49 @@ import { ChartPie } from 'lucide-react';
 import { Link } from 'react-router';
 
 export interface InvertorCardProps {
-  current: number;
-  voltage: number;
+  phases: string[];
+  currents: number[];
+  voltages: number[];
 }
 
-const InvertorCard = ({ current, voltage }: InvertorCardProps) => {
+const InvertorCard = ({ phases, currents, voltages }: InvertorCardProps) => {
   return (
     <div className="font-poppins rounded bg-white px-8 py-4 shadow">
       <div className="flex items-center justify-between">
-        <h3 className="text-2xl font-bold text-gray-700">Titre</h3>
+        <h3 className="text-2xl font-bold text-gray-700">Sentryum</h3>
         <span className="text-xl">{Math.random() > 0.5 ? '🟢' : '🔴'}</span>
       </div>
+
       <div className="mt-6 grid grid-cols-3">
         <div className="space-y-2">
           <div className="text-gray-600">Phase</div>
-          <div className="text-xl text-gray-900">L</div>
+          {phases.map((phase, i) => (
+            <div key={i} className="text-xl text-gray-900">
+              {phase}
+            </div>
+          ))}
         </div>
 
         <div className="space-y-2">
           <div className="text-gray-600">Courant</div>
-          <div className="text-xl font-semibold text-gray-900">
-            {current} <span className="text-lg text-gray-900">A</span>
-          </div>
+
+          {currents.map((current, i) => (
+            <div key={i} className="text-xl font-semibold text-gray-900">
+              {current} <span className="text-lg text-gray-900">A</span>
+            </div>
+          ))}
         </div>
 
         <div className="space-y-2">
           <div className="text-gray-600">Tension</div>
-          <div className="text-xl font-semibold text-gray-900">
-            {voltage} <span className="text-lg text-gray-900">V</span>
-          </div>
+          {voltages.map((voltage, i) => (
+            <div key={i} className="text-xl font-semibold text-gray-900">
+              {voltage} <span className="text-lg text-gray-900">V</span>
+            </div>
+          ))}
         </div>
       </div>
+
       <div className="mt-4 grid grid-cols-3 gap-y-4">
         <div>
           <div className="text-gray-600">Puissance active</div>
@@ -69,6 +81,7 @@ const InvertorCard = ({ current, voltage }: InvertorCardProps) => {
           </div>
         </div>
       </div>
+
       <div className="flex justify-end">
         <Link
           to="/inventor-item"
