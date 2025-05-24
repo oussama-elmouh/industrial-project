@@ -12,7 +12,7 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <Routes>
         <Route index element={<App />} />
-        <Route path="inventor-list" element={<InventorList />} />
+        <Route path="dashboard" element={<InventorList />} />
         <Route path="inventor-item" element={<InventorItem />} />
         <Route path="alarms" element={<AlarmList />} />
       </Routes>

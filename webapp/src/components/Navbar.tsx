@@ -10,6 +10,8 @@ import {
   Transition,
 } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Link, useLocation } from 'react-router';
+import { ChartLine } from 'lucide-react';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
@@ -17,18 +19,21 @@ function classNames(...classes: string[]) {
 
 const navigation = [
   {
-    href: '',
-    name: 'Onduleurs',
-    current: false,
+    to: '/dashboard',
+    name: 'Tableau de bord',
+    icon: ChartLine,
   },
   {
-    href: '',
-    name: 'Alarms',
-    current: true,
+    to: '/alarms',
+    name: 'Configuration des alarmes',
+    icon: BellIcon,
   },
 ];
 
 export default function Navbar() {
+  const { pathname } = useLocation();
+  console.log(pathname);
+
   return (
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }: { open: boolean }) => (
@@ -50,12 +55,14 @@ export default function Navbar() {
                 <div className="hidden sm:flex sm:space-x-8">
                   {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
                   {navigation.map((item) => (
-                    <a
-                      href="#"
-                      className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${item.current ? 'border-indigo-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'}`}
+                    <Link
+                      to={item.to}
+                      key={item.name}
+                      className={`inline-flex items-center gap-x-2 border-b-2 px-1 pt-1 text-sm font-medium ${item.to === pathname ? 'border-indigo-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'}`}
                     >
+                      <item.icon className="size-5" />
                       {item.name}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -75,7 +82,7 @@ export default function Navbar() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        src="/images/user.png"
                         alt=""
                       />
                     </MenuButton>
@@ -139,35 +146,13 @@ export default function Navbar() {
           <DisclosurePanel className="sm:hidden">
             <div className="space-y-1 pt-2 pb-4">
               {navigation.map((item) => (
-                <DisclosureButton
-                  as="a"
-                  href="#"
-                  className={`block border-l-4 py-2 pr-4 pl-3 text-base font-medium ${item.current ? 'border-indigo-500 bg-indigo-50 text-indigo-700' : 'border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700'}`}
+                <Link
+                  to={item.to}
+                  className={`block border-l-4 py-2 pr-4 pl-3 text-base font-medium ${item.to === pathname ? 'border-indigo-500 bg-indigo-50 text-indigo-700' : 'border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700'}`}
                 >
                   {item.name}
-                </DisclosureButton>
+                </Link>
               ))}
-              <DisclosureButton
-                as="a"
-                href="#"
-                className="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-              >
-                Team
-              </DisclosureButton>
-              <DisclosureButton
-                as="a"
-                href="#"
-                className="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-              >
-                Projects
-              </DisclosureButton>
-              <DisclosureButton
-                as="a"
-                href="#"
-                className="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-              >
-                Calendar
-              </DisclosureButton>
             </div>
           </DisclosurePanel>
         </>

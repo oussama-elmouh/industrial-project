@@ -1,4 +1,3 @@
-import InventorCard from '@/components/InvertorCardPortrait.tsx';
 import { calculateRealPower, cn, random } from '@/lib/utils.ts';
 import CurrentChart from '@/components/charts/CurrentChart.tsx';
 import VoltageChart from '@/components/charts/VoltageChart.tsx';
@@ -24,15 +23,15 @@ const InventorItem = () => {
   return (
     <>
       <Navbar />
-      <div className="mt-8 px-32">
-        <div className="grid grid-cols-12 gap-8">
-          <div className="col-span-3">
+      <div className="mx-auto mt-8 max-w-7xl">
+        <div className="grid grid-cols-3 gap-8">
+          <div className="col-span-1">
             <div className="space-y-4">
-              <InventorCard {...data[data.length - 1]} />
+              <StackedListAlarms />
             </div>
           </div>
 
-          <div className="col-span-5">
+          <div className="col-span-2">
             <Tabs defaultValue="current">
               <TabsList className="w-full">
                 <TabsTrigger className="cursor-pointer" value="current">
@@ -58,10 +57,8 @@ const InventorItem = () => {
                 <RealPower realPowerValues={realPowerValues} />
               </TabsContent>
             </Tabs>
-          </div>
 
-          <div className="col-span-4">
-            <StackedListAlarms />
+            {/*<InventorCard {...data[data.length - 1]} />*/}
           </div>
         </div>
       </div>
@@ -75,9 +72,9 @@ export const StackedListAlarms = () => {
   return (
     <div className="h-full rounded bg-white py-6 shadow">
       <ScrollArea className="h-full px-8">
-        <h3 className="mb-6 px-8 text-2xl font-bold text-gray-700">Alarmes</h3>
+        <h3 className="mb-6 text-2xl font-bold text-gray-700">Alarmes</h3>
         <ul role="list" className="divide-y divide-gray-100">
-          {[...alarms, ...alarms].map((alarm) => (
+          {[...alarms].map((alarm) => (
             <li
               key={alarm.condition}
               className="flex justify-between gap-x-4 py-5 first:pt-0"

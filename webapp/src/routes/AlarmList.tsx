@@ -107,4 +107,40 @@ export const alarms = [
     iconBackground: 'bg-indigo-50',
     date: '2025-05-17T10:30:00Z',
   },
+  {
+    condition: 'Power overload',
+    action:
+      'Remove some of the equipment from the UPS. The UPS continues to operate, but may switch to Bypass mode or shut down if the load increases. The alarm resets when the condition becomes inactive.',
+    icon: BatteryWarning,
+    iconForeground: 'text-indigo-700',
+    iconBackground: 'bg-indigo-50',
+    date: '2025-05-17T10:30:00Z',
+  },
+  {
+    condition: 'Power overload',
+    action:
+      'Remove some of the equipment from the UPS. The UPS continues to operate, but may switch to Bypass mode or shut down if the load increases. The alarm resets when the condition becomes inactive.',
+    icon: BatteryWarning,
+    iconForeground: 'text-indigo-700',
+    iconBackground: 'bg-indigo-50',
+    date: '2025-05-17T10:30:00Z',
+  },
+  {
+    condition: 'Power overload',
+    action:
+      'Remove some of the equipment from the UPS. The UPS continues to operate, but may switch to Bypass mode or shut down if the load increases. The alarm resets when the condition becomes inactive.',
+    icon: BatteryWarning,
+    iconForeground: 'text-indigo-700',
+    iconBackground: 'bg-indigo-50',
+    date: '2025-05-17T10:30:00Z',
+  },
+  {
+    condition: 'Power overload',
+    action:
+      'Remove some of the equipment from the UPS. The UPS continues to operate, but may switch to Bypass mode or shut down if the load increases. The alarm resets when the condition becomes inactive.',
+    icon: BatteryWarning,
+    iconForeground: 'text-indigo-700',
+    iconBackground: 'bg-indigo-50',
+    date: '2025-05-17T10:30:00Z',
+  },
 ];

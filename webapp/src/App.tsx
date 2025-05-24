@@ -1,12 +1,14 @@
 import FeatureCard from './components/FeatureCard.tsx';
 import { Link } from 'react-router';
+import Navbar from '@/components/Navbar.tsx';
 
 function App() {
   return (
-    <div className="h-screen bg-gray-50">
+    <>
+      <Navbar />
       <div className="mx-auto max-w-7xl">
         <div className="grid h-screen place-items-center gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          <Link to="/inventor-list">
+          <Link to="/dashboard">
             <FeatureCard
               title="Surveillance des onduleurs"
               image="/images/inventor.png"
@@ -23,7 +25,7 @@ function App() {
           <FeatureCard title="Alarms" image="/svgs/alert.svg" />
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

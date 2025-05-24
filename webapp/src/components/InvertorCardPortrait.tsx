@@ -18,20 +18,20 @@ const InvertorCard = ({ phases, currents, voltages }: InvertorCardProps) => {
           ))}
         </div>
 
-        <div className="space-y-2 justify-self-center">
-          <div className="text-gray-600">Courant</div>
-          {currents.map((current, i) => (
+        <div className="justify-self-centern space-y-2">
+          <div className="text-gray-600">Tension</div>
+          {voltages.map((voltage, i) => (
             <div key={i} className="text-xl font-semibold text-gray-900">
-              {current} <span className="text-lg text-gray-900">A</span>
+              {voltage} <span className="text-lg text-gray-900">V</span>
             </div>
           ))}
         </div>
 
         <div className="space-y-2 justify-self-end text-right">
-          <div className="text-gray-600">Tension</div>
-          {voltages.map((voltage, i) => (
+          <div className="text-gray-600">Courant</div>
+          {currents.map((current, i) => (
             <div key={i} className="text-xl font-semibold text-gray-900">
-              {voltage} <span className="text-lg text-gray-900">V</span>
+              {current} <span className="text-lg text-gray-900">A</span>
             </div>
           ))}
         </div>
@@ -48,7 +48,7 @@ const InvertorCard = ({ phases, currents, voltages }: InvertorCardProps) => {
   );
 };
 
-const Variable = ({
+export const Variable = ({
   title,
   value,
   unit,
