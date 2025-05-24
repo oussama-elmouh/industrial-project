@@ -26,7 +26,7 @@ const InventorItem = () => {
       <div className="mx-auto mt-8 max-w-7xl">
         <div className="grid grid-cols-3 gap-8">
           <div className="col-span-1">
-            <div className="space-y-4">
+            <div className="h-[768px] space-y-4">
               <StackedListAlarms />
             </div>
           </div>
