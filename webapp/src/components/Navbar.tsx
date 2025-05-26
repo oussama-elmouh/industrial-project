@@ -10,7 +10,7 @@ import {
   Transition,
 } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Link, useLocation } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { ChartLine } from 'lucide-react';
 
 function classNames(...classes: string[]) {
@@ -32,6 +32,7 @@ const navigation = [
 
 export default function Navbar() {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   return (
     <Disclosure as="nav" className="bg-white shadow">
@@ -99,6 +100,7 @@ export default function Navbar() {
                       <MenuItem>
                         {({ focus }) => (
                           <a
+                            onClick={() => navigate('/login')}
                             className={classNames(
                               focus ? 'bg-gray-100' : '',
                               'block cursor-pointer px-4 py-2 text-sm text-gray-700',

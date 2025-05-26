@@ -15,5 +15,5 @@ export const calculateRealPower = (
   current: number,
   powerFactor = 0.8,
 ) => {
-  return Math.sqrt(3) * voltage * current * powerFactor;
+  return Math.round(Math.sqrt(3) * voltage * current * powerFactor);
 };
