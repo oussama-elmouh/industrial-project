@@ -1,7 +1,7 @@
 import { ChartPie } from 'lucide-react';
 import { Link } from 'react-router';
 import { InvertorCardProps } from '@/shared/types.ts';
-import { calculateRealPower } from '@/lib/utils.ts';
+import { calculateActivePower } from '@/lib/utils.ts';
 
 const InvertorCard = ({ phases, currents, voltages }: InvertorCardProps) => {
   return (
@@ -45,7 +45,7 @@ const InvertorCard = ({ phases, currents, voltages }: InvertorCardProps) => {
         <div>
           <div className="text-gray-600">Puissance active</div>
           <div className="text-xl font-semibold text-gray-900">
-            {calculateRealPower(voltages[0], currents[0])}{' '}
+            {calculateActivePower(voltages[0], currents[0])}{' '}
             <span className="text-lg text-gray-900">kW</span>
           </div>
         </div>

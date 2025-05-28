@@ -1,4 +1,4 @@
-import { calculateRealPower, cn, random } from '@/lib/utils.ts';
+import { calculateActivePower, cn, random } from '@/lib/utils.ts';
 import CurrentChart from '@/components/charts/CurrentChart.tsx';
 import VoltageChart from '@/components/charts/VoltageChart.tsx';
 import RealPower from '@/components/charts/RealPower.tsx';
@@ -16,7 +16,7 @@ const data = Array.from({ length: 24 }).map(() => ({
 const currents = data.map((i) => i.currents);
 const voltages = data.map((i) => i.voltages);
 const realPowerValues = data.map((i) =>
-  calculateRealPower(i.voltages[0], i.currents[0]),
+  calculateActivePower(i.voltages[0], i.currents[0]),
 );
 
 const InventorItem = () => {

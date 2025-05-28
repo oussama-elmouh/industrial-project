@@ -1,12 +1,5 @@
 import InvertorCard from '../components/InvertorCardLandscape.tsx';
-import {
-  calculateApparentPower,
-  calculateReactive,
-  calculateRealPower as calculateActivePower,
-  random,
-  calculateActiveEnergy,
-  calculateReactiveEnergy,
-} from '@/lib/utils.ts';
+import { calculate } from '@/lib/utils.ts';
 import { StackedListAlarms } from '@/routes/InventorItem.tsx';
 import Navbar from '@/components/Navbar.tsx';
 import { ScrollArea } from '@/components/ui/scroll-area.tsx';
@@ -40,23 +33,10 @@ const Dashboard = () => {
 
   if (lastJsonMessage) {
     inventors = lastJsonMessage.map((message) => {
-      const activePower = calculateActivePower(
-        message.voltages[0],
-        message.currents[0],
-      );
-      const reactivePower = calculateReactive();
-      const apparentPower = calculateApparentPower(activePower, reactivePower);
-      const activeEnergy = calculateActiveEnergy();
-      const reactiveEnergy = calculateReactiveEnergy();
-
       return {
         ...message,
+        ...calculate(message.voltages[0], message.currents[0]),
         phases: ['L1', 'L2', 'L3'],
-        activePower,
-        reactivePower,
-        apparentPower,
-        activeEnergy,
-        reactiveEnergy,
       };
     });
   }
