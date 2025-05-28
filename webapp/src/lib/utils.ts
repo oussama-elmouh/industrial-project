@@ -17,3 +17,17 @@ export const calculateRealPower = (
 ) => {
   return Math.round(Math.sqrt(3) * voltage * current * powerFactor);
 };
+
+export const calculateReactive = () => {
+  return 5;
+};
+
+export const calculateApparentPower = (
+  activePower: number,
+  apparentPower: number,
+) => {
+  return Math.sqrt(activePower ** 2 + apparentPower ** 2);
+};
+
+export const calculateActiveEnergy = () => 2;
+export const calculateReactiveEnergy = () => 3;

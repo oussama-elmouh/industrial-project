@@ -74,9 +74,9 @@ export const StackedListAlarms = () => {
       <ScrollArea className="h-full px-8">
         <h3 className="mb-6 text-2xl font-bold text-gray-700">Alarmes</h3>
         <ul role="list" className="divide-y divide-gray-100">
-          {[...alarms].map((alarm) => (
+          {[...alarms].map((alarm, i) => (
             <li
-              key={alarm.condition}
+              key={i}
               className="flex justify-between gap-x-4 py-5 first:pt-0"
             >
               <div>

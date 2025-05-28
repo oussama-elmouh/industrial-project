@@ -1,10 +1,66 @@
 import InvertorCard from '../components/InvertorCardLandscape.tsx';
-import { random } from '@/lib/utils.ts';
+import {
+  calculateApparentPower,
+  calculateReactive,
+  calculateRealPower as calculateActivePower,
+  random,
+  calculateActiveEnergy,
+  calculateReactiveEnergy,
+} from '@/lib/utils.ts';
 import { StackedListAlarms } from '@/routes/InventorItem.tsx';
 import Navbar from '@/components/Navbar.tsx';
 import { ScrollArea } from '@/components/ui/scroll-area.tsx';
+import useWebsocket from 'react-use-websocket';
+
+interface Response {
+  title: string;
+  currents: number[];
+  voltages: number[];
+  timestamp: string;
+}
+
+interface Inventor {
+  title: string;
+  currents: number[];
+  voltages: number[];
+  timestamp: string;
+  phases: string[];
+  activePower: number;
+  reactivePower: number;
+  apparentPower: number;
+  activeEnergy: number;
+  reactiveEnergy: number;
+}
+
+const socketUrl = 'ws://localhost:8000/ws/data';
 
 const Dashboard = () => {
+  const { lastJsonMessage } = useWebsocket<Response[]>(socketUrl);
+  let inventors: Inventor[] = [];
+
+  if (lastJsonMessage) {
+    inventors = lastJsonMessage.map((message) => {
+      const activePower = calculateActivePower(
+        message.voltages[0],
+        message.currents[0],
+      );
+      const reactivePower = calculateReactive();
+      const apparentPower = calculateApparentPower(activePower, reactivePower);
+      const activeEnergy = calculateActiveEnergy();
+      const reactiveEnergy = calculateReactiveEnergy();
+
+      return {
+        ...message,
+        phases: ['L1', 'L2', 'L3'],
+        activePower,
+        reactivePower,
+        apparentPower,
+        activeEnergy,
+        reactiveEnergy,
+      };
+    });
+  }
+
   return (
     <>
       <Navbar />
@@ -21,7 +77,7 @@ const Dashboard = () => {
             <div className="h-[768px]">
               <ScrollArea className="h-full">
                 <div className="grid grid-cols-1 gap-8">
-                  {inverterData.map((data, index) => (
+                  {inventors.map((data, index) => (
                     <InvertorCard
                       key={index}
                       phases={data.phases}
@@ -40,50 +96,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-const inverterData = [
-  {
-    title: 'SUN2000',
-    phases: ['L1', 'L2', 'L3'],
-    currents: random(50, 60),
-    voltages: random(700, 800),
-    activePower: 6.2,
-    reactivePower: 1.1,
-    apparentPower: 6.3,
-    activeEnergy: 15.8,
-    reactiveEnergy: 2.3,
-  },
-  {
-    title: 'EATON 2',
-    phases: ['L1', 'L2', 'L3'],
-    currents: random(50, 60),
-    voltages: random(700, 800),
-    activePower: 5.7,
-    reactivePower: 0.9,
-    apparentPower: 5.9,
-    activeEnergy: 13.2,
-    reactiveEnergy: 1.8,
-  },
-  {
-    title: 'EATON 3',
-    phases: ['L1', 'L2', 'L3'],
-    currents: random(50, 60),
-    voltages: random(700, 800),
-    activePower: 6.8,
-    reactivePower: 1.3,
-    apparentPower: 7.0,
-    activeEnergy: 17.4,
-    reactiveEnergy: 2.7,
-  },
-  {
-    title: 'EATON 4',
-    phases: ['L1', 'L2', 'L3'],
-    currents: random(50, 60),
-    voltages: random(700, 800),
-    activePower: 5.1,
-    reactivePower: 0.8,
-    apparentPower: 5.3,
-    activeEnergy: 12.1,
-    reactiveEnergy: 1.5,
-  },
-];
