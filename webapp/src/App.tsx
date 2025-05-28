@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
-import InventorList from './routes/InventorList.tsx';
+import Dashboard from './routes/Dashboard.tsx';
 import InventorItem from '@/routes/InventorItem.tsx';
 import AlarmList from '@/routes/AlarmList.tsx';
 import Login from '@/routes/Login.tsx';
@@ -11,7 +11,7 @@ function App() {
         <Routes>
           <Route index element={<App />} />
           <Route path="login" element={<Login />} />
-          <Route path="dashboard" element={<InventorList />} />
+          <Route path="dashboard" element={<Dashboard />} />
           <Route path="inventor-item" element={<InventorItem />} />
           <Route path="alarms" element={<AlarmList />} />
         </Routes>

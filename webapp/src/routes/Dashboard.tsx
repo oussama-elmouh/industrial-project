@@ -4,7 +4,7 @@ import { StackedListAlarms } from '@/routes/InventorItem.tsx';
 import Navbar from '@/components/Navbar.tsx';
 import { ScrollArea } from '@/components/ui/scroll-area.tsx';
 
-const InventorList = () => {
+const Dashboard = () => {
   return (
     <>
       <Navbar />
@@ -39,7 +39,7 @@ const InventorList = () => {
   );
 };
 
-export default InventorList;
+export default Dashboard;
 
 const inverterData = [
   {
